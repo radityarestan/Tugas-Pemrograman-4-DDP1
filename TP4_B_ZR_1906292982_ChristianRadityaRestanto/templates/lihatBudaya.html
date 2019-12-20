@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>BudayaKB Lite</title>
+</head>
+<body>
+    {% include 'includes/_navbar.html' %}
+
+    <div>
+        <!--Menampilkan seluruh isi file dalam bentuk tabel-->
+        {% if jumlah_data is defined and jumlah_data > 0 %}
+            <h2>Daftar Nama Budaya yang Telah Tersedia</h2>
+            <div class="table-wrapper">
+                <table>
+                    <tr>
+                        <th>Nama Budaya</th>
+                        <th>Tipe Budaya</th>
+                        <th>Provinsi Budaya</th>
+                        <th>URL Reference</th>
+                    </tr>
+               
+                    {% for detail in data_budaya %}
+                        <tr>
+                            <td class = "natipro">{{detail.nama}}</td>
+                            <td class = "natipro">{{detail.tipe}}</td>
+                            <td class = "natipro">{{detail.prov}}</td>
+                            <td class = "natipro">{{detail.url}}</td>
+                        </tr>
+                    {% endfor %}
+                
+                </table>
+            </div>
+    </div>
+    <!--Menampilkan pesan jika tidak ada yang tersedia-->
+    {% else %}
+        <h2>Maaf, Data Belum Tersedia</h2>
+    {% endif %}
+</body>
+
+<style>
+body {
+    background-image: url('https://media.travelingyuk.com/wp-content/uploads/2018/12/Pura-Ulun-Danu-Bratan-at-night-Bali-Indonesia.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: white;
+    font-family: sans-serif;
+}
+
+table, th, td {
+  border: 1px solid whitesmoke;
+  background : rgb(171, 231, 250, 0.2);
+}
+.table-wrapper{
+    width: 100vw;
+    overflow-x: auto;
+}
+table{
+    min-width : 60%;
+    max-width: 100%;
+}
+.natipro{
+    text-align: center;
+}
+</style>
+</html>

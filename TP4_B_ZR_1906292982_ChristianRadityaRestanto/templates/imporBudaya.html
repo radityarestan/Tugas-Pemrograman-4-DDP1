@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>BudayaKB Lite</title>
+</head>
+
+<body>
+
+	{% include 'includes/_navbar.html' %}
+	
+	<div class="container">
+		<form method="POST", action="" enctype = "multipart/form-data">
+			<div class="form">
+				<h2>Impor File</h2>
+				<p>Pilih file CSV berisi data BudayaKB</p>
+				<input type="file" class="button" name=file required>
+				<input type=submit class="button" value="Import Data">
+			</div>
+		</form>
+	</div>
+
+    <!--Menampilkan pesan keberhasilan mengimport-->
+	{% if result is defined and result >0 %}
+	    <h4>{{ result }} data budaya telah terimpor dari file "{{ fname }}"</h4>
+    {% endif %}
+    
+</body>
+
+<style>
+.form{
+    border: none;
+    border-radius: 4px;
+    padding: 1px 10px;
+    margin-left :2%;
+    margin-top: 2%;
+    margin-right:74%;
+    background: rgb(171, 231, 250,0.5);
+    color: rgb(171, 231, 250);
+}
+body {
+    background-image: url('https://media.travelingyuk.com/wp-content/uploads/2018/12/Pura-Ulun-Danu-Bratan-at-night-Bali-Indonesia.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: white;
+    font-family: sans-serif;
+}
+.button{
+    background-color:rgb(119, 188, 216);;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+h4{
+    margin-left:2%;
+    margin-right:74%;
+    text-align: center;
+}
+</style>
+</html>

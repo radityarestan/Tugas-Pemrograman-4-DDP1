@@ -1,0 +1,121 @@
+<html>
+<head>
+	<title>BudayaKB Lite</title>
+</head>
+
+<body>
+
+     {% include 'includes/_navbar.html' %}
+    <div>
+
+        <div class="form">
+            <h2 style="text-align: center;">Cari Budaya</h2>
+
+            <p>Pencarian Budaya Berdasarkan:</p>
+            <form method="POST" action="" enctype="multipart/form-data">
+
+                <select name="pilihan" class="button" required>
+                    <option value="Nama Budaya">Nama Budaya</option>
+                    <option value="Tipe Budaya">Tipe Budaya</option>
+                    <option value="Provinsi Budaya">Provinsi Budaya</option>
+                </select>
+            
+                <p>Masukkan yang ingin anda temukan:</p>
+                <input type="text" name="target" class="button" placeholder="Ketik Di Sini" required>
+                <input type="submit" class="button">
+                
+            </form>
+        </div>
+        <div>
+            {% if choice == 1 %}
+
+                <!--Menampilkan data budaya yang dicari dalam bentuk tabel-->
+                {% if jumlah_budaya is defined and jumlah_budaya > 0 %}
+                    <h3 class="tulisan"> Berikut Hasil Pencarian Anda </h3>
+                    <h4 class="tulisan"> Jumlah yang ditemukan: {{jumlah_budaya}} budaya </h4>
+                    <div class="table-wrapper">
+                        <table>
+                        <tr>
+                            <th>Nama Budaya</th>
+                            <th>Tipe Budaya</th>
+                            <th>Provinsi Budaya</th>
+                            <th>URL Reference</th>
+                        </tr>
+
+                        {% for budaya in data_budaya %}
+                            <tr>
+                                <td>{{budaya.nama}}</td>
+                                <td>{{budaya.tipe}}</td>
+                                <td>{{budaya.prov}}</td>
+                                <td>{{budaya.url}}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </table>
+                    </div>
+                
+                <!--Menampilka pesan bahwa data yang dicari tidak ada dalam program-->
+                {% elif jumlah_budaya == 0 %}
+                    <h3 class="tulisan">Tidak ditemukan data budaya yang anda cari</h3>
+                {% endif %}
+            
+            <!--Menampilkan pesan bahwa file belum diimpor-->
+            {% elif choice == 2 %}
+                    <h3 class="tulisan">Maaf, Anda Belum Mengimpor File</h3>
+            {% endif %}
+
+        </div>
+    </div>
+
+</body>
+
+<style>
+.form{
+    border: none;
+    border-radius: 4px;
+    padding: 0.1px 10px;
+    margin-left :16%;
+    margin-top: 2%;
+    margin-right:61%;
+    background: rgb(171, 231, 250,0.5);
+    color: rgb(171, 231, 250);
+}
+.button{
+    background-color:rgb(119, 188, 216);;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+body{
+    background-image: url('https://media.travelingyuk.com/wp-content/uploads/2018/12/Pura-Ulun-Danu-Bratan-at-night-Bali-Indonesia.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: white;
+    font-family: sans-serif;
+}
+table,th,td{
+    text-align: center;
+    border: 1px solid whitesmoke;
+    margin-left: 2%;
+    margin-right: 2%;
+    background: rgb(171, 231, 250,0.2);
+}
+.table-wrapper{
+    width: 100vw;
+    overflow-x: auto ;
+}
+table{
+    width: 60%;
+}
+
+select, input{
+    cursor: pointer;
+}
+.tulisan{
+    margin-right: 48%;
+    margin-left: 2%;
+    text-align: center;
+}
+</style>
+
+</html>

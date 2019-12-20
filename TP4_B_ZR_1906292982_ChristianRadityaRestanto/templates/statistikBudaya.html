@@ -1,0 +1,129 @@
+<html>
+<head>
+    <title>BudayaKB Lite</title>
+</head>
+
+<body>
+    {% include 'includes/_navbar.html' %}
+
+    <div>
+        <div class="form">
+            <h2>Statistik Budaya</h2>
+
+            <p>Statistik Budaya Berdasarkan:</p>
+        
+            <form method="POST" action="" enctype="multipart/form-data">
+        
+                <select name="pilihan" class="button" required>
+                    <option value="Semua Budaya">Semua Budaya</option>
+                    <option value="Tipe Budaya">Tipe Budaya</option>
+                    <option value="Provinsi Budaya">Provinsi Budaya</option>
+                </select>
+                <input type="submit" class="button">
+                
+            </form>
+        </div>
+    </div>
+    
+    {% if data_budaya is defined %}
+        <!--Menampilkan hasil pemrosesan statistik semua budaya-->
+        {% if 'Semua Budaya' in pilihan %}
+            {% if data_budaya > 0 : %}
+                <h3 class="h3">Terdapat total {{data_budaya}} data budaya</h3>
+            {% else %}
+                <h3 class="h3">Maaf, Data Belum Tersedia</h3>
+            {% endif %}
+
+        <!--Menampilkan hasil pemrosesan statistik Tipe budaya-->
+        {% elif 'Tipe Budaya' in pilihan and data_budaya|length > 0 %}
+            <h3 class="h3">Berikut Hasil Statistik {{pilihan}}</h3>
+            <table>
+
+            <tr>
+                <th>Tipe Budaya</th>
+                <th>Jumlah Budaya</th>
+            </tr>
+            {% for tipe,jumlah in data_budaya %}
+                <tr>
+                    <td>{{tipe}}</td>
+                    <td class="count">{{jumlah}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        
+        <!--Menampilkan hasil pemrosesan statistik Provinsi budaya-->
+        {% elif 'Provinsi Budaya' in pilihan and data_budaya|length > 0 %}
+            <h3 class="h3">Berikut Hasil Statistik {{pilihan}}</h3>
+            <table>
+
+            <tr>
+                <th>Asal Budaya</th>
+                <th>Jumlah Budaya</th>
+            </tr>
+            {% for tipe,jumlah in data_budaya %}
+                <tr>
+                    <td>{{tipe}}</td>
+                    <td class="count">{{jumlah}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        
+        <!--Menampilkan pesan bahwa data tidak tersedia-->
+        {% else %}
+            <h3 class="h3">Maaf, Data Belum Tersedia</h3>
+        {% endif %}
+    {% endif %}
+
+</body>
+<style>
+.form{
+    border: none;
+    border-radius: 4px;
+    padding: 0.1px 10px;
+    margin-left :16%;
+    margin-top: 2%;
+    margin-right:61%;
+    background: rgb(171, 231, 250,0.5);
+    color: rgb(171, 231, 250);
+    text-align: center;
+}
+.button{
+    background-color:rgb(119, 188, 216);;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+body {
+    background-image: url('https://media.travelingyuk.com/wp-content/uploads/2018/12/Pura-Ulun-Danu-Bratan-at-night-Bali-Indonesia.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: white;
+    font-family: sans-serif;
+}
+
+table, th, td {
+  border: 1px solid whitesmoke;
+  width: 23%;
+  text-align: center;
+  background : rgb(171, 231, 250,0.2);
+  
+}
+select, input{
+    cursor: pointer;
+}
+.count{
+    text-align: center;
+}
+table{
+    margin-left: 16%;
+    margin-right : 61%;
+}
+.h3{
+    margin-right: 61%;
+    margin-left: 16%;
+    text-align: center;
+}
+
+</style>
+
+</html>
